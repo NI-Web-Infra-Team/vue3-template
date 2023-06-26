@@ -1,18 +1,18 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <Title></Title>
+    <TitleMain></TitleMain>
     <h3>count: {{ count }}</h3>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import Title from "./../../components/Title.vue";
+import TitleMain from "./../../components/TitleMain.vue";
 
 export default defineComponent({
-  name: "Home",
+  name: "HomeMain",
   components: {
-    Title,
+    TitleMain,
   },
 });
 </script>
