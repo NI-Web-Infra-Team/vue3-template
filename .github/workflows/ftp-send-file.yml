@@ -1,0 +1,28 @@
+name: ftp send file
+
+on: workflow_dispatch
+
+jobs:
+  web-deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get latest code
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.com/
+      - name: install package
+        run: npm i
+      - name: build
+        run: npm run build
+      - name: pack
+        run: zip -q -r dist.zip ./dist
+      - name: Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: 10.52.0.131
+          username: testusername
+          password: ${{ secrets.ftp_password }}

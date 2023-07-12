@@ -1,0 +1,27 @@
+name: close non-standard issues
+
+on:
+  issues:
+    types: [opened, edited] # issue 打开或者编辑后
+
+jobs:
+  close-issue:
+    runs-on: ubuntu-latest
+    env:
+      ISSUE: ${{ github.event.issue.body }}
+    steps:
+      - name: 'checkout'
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.com/
+      - name: lint sh
+        run: node ./action_script/lintIssue.js  >> "$GITHUB_ENV"
+      - name: 'close-issue'
+        if: ${{env.ISSUE_CHECK_RESULT == 'unqualified'}}
+        uses: actions-cool/issues-helper@v2
+        with:
+          actions: 'close-issue'
+          token: ${{ secrets.GITHUB_TOKEN }}

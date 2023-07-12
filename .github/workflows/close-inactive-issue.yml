@@ -1,0 +1,17 @@
+name: close inaction issue
+
+on:
+  schedule:
+    - cron: "8 12 * * *"
+
+jobs:
+  check-need-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: close-issues
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: 'close-issues'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          labels: 'need info'
+          inactive-day: 3

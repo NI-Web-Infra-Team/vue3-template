@@ -1,37 +1,10 @@
 <template>
-  <div class="home">
-    <h1>Home</h1>
-    <TitleMain></TitleMain>
-    <h3>count: {{ count }}</h3>
-  </div>
+  <div class="home"></div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import TitleMain from "./../../components/TitleMain.vue";
-
-export default defineComponent({
-  name: "HomeMain",
-  components: {
-    TitleMain,
-  },
-});
+export default defineComponent({});
 </script>
 
-<script setup lang="ts">
-import { storeToRefs } from "pinia";
-import useCounter from "@/store/counter";
-
-const counterStore = useCounter();
-const { count } = storeToRefs(counterStore);
-
-function incrementCount() {
-  counterStore.count++;
-}
-
-setInterval(incrementCount, 1000);
-</script>
-<style>
-.home {
-  text-align: center;
-}
-</style>
+<script setup lang="ts"></script>
+<style></style>
