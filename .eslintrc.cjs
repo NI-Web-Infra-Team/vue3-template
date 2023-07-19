@@ -1,34 +1,44 @@
+/* eslint-env node */
+require('@rushstack/eslint-patch/modern-module-resolution')
+
 module.exports = {
-	env: {
-		browser: true,
-		es2021: true,
-	},
-	extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:vue/vue3-essential"],
-	overrides: [
-		{
-			env: {
-				node: true,
-			},
-			files: [".eslintrc.{js,cjs}"],
-			parserOptions: {
-				sourceType: "script",
-			},
-		},
-	],
-	parserOptions: {
-		ecmaVersion: "latest",
-		parser: "@typescript-eslint/parser",
-		sourceType: "module",
-	},
-	plugins: ["@typescript-eslint", "vue"],
-	rules: {
-		indent: ["error", "tab"],
-		"linebreak-style": ["error", "unix"],
-		quotes: ["error", "double"],
-		semi: ["error", "always"],
-		"no-console": process.env.NODE_ENV === "production" ? ["error", { allow: ["error", "warn"] }] : "off",
-		"no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-		"@typescript-eslint/no-unused-vars": ["error", { varsIgnorePattern: ".*", args: "none" }],
-		"@typescript-eslint/no-explicit-any": "off",
-	},
-};
+  root: true,
+  env: {
+    node: true,
+    browser: true
+  },
+  plugins: ['import', 'jsdoc'],
+  extends: [
+    'plugin:vue/vue3-essential',
+    'eslint:recommended',
+    '@vue/eslint-config-typescript',
+    '@vue/eslint-config-prettier/skip-formatting',
+    'plugin:jsdoc/recommended'
+  ],
+  parserOptions: {
+    ecmaVersion: 'latest'
+  },
+  rules: {
+    'import/first': 'error',
+    'import/no-duplicates': 'error',
+    'import/order': [
+      'error',
+      {
+        groups: ['builtin', 'internal', 'external', 'parent', 'sibling', 'index', 'object', 'type'],
+        pathGroups: [
+          {
+            pattern: 'vue',
+            group: 'external',
+            position: 'before'
+          },
+          {
+            pattern: '@vue/**',
+            group: 'external',
+            position: 'before'
+          }
+        ],
+        pathGroupsExcludedImportTypes: ['type']
+      }
+    ]
+  }
+}
