@@ -1,12 +1,13 @@
 {
   "name": "vue3-template",
   "description": "A Vue.js 3 project",
-  "packageManager": "yarn@1.22.19",
+  "packageManager": "pnpm@8.6.9",
   "private": true,
   "version": "0.0.1",
   "type": "module",
   "license": "MIT",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "vite",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
@@ -19,7 +20,7 @@
     "type-check": "vue-tsc --noEmit --composite false"
   },
   "dependencies": {
-    "@ni-web-infra/common-utils": "^1.1.0-beta.1",
+    "@ni-web-infra/common-utils": "^1.2.0",
     "axios": "^1.4.0",
     "dayjs": "^1.11.9",
     "lodash-es": "^4.17.21",
