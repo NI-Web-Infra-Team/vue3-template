@@ -8,6 +8,8 @@
     "playwright.config.*"
   ],
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
     "composite": true,
     "module": "ESNext",
     "types": ["node"]

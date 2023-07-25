@@ -1,13 +1,11 @@
 {
   "name": "vue3-template",
-  "description": "A Vue.js 3 project",
-  "packageManager": "pnpm@8.6.9",
+  "description": "A Vue.js 3 project template",
   "private": true,
   "version": "0.0.1",
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "dev": "vite",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
