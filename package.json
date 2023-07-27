@@ -13,7 +13,7 @@
     "prepare": "husky install",
     "cz": "git-cz",
     "semantic-release": "semantic-release",
-    "upgrade:dependencies": "taze -w -i",
+    "upgrade:dep": "taze -w -i",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit --composite false"
   },
