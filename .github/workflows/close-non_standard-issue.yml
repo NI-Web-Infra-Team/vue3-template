@@ -10,7 +10,7 @@ jobs:
     env:
       ISSUE: ${{ github.event.issue.body }}
     steps:
-      - name: 'checkout'
+      - name: "checkout"
         uses: actions/checkout@v3
       - name: Setup node
         uses: actions/setup-node@v3
@@ -19,9 +19,26 @@ jobs:
           registry-url: https://registry.npmjs.com/
       - name: lint sh
         run: node ./action_script/lintIssue.js  >> "$GITHUB_ENV"
-      - name: 'close-issue'
-        if: ${{env.ISSUE_CHECK_RESULT == 'unqualified'}}
-        uses: actions-cool/issues-helper@v2
+      - name: add-label
+        uses: actions-cool/issues-helper@v3
         with:
-          actions: 'close-issue'
+          actions: "add-labels"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          labels: ${{env.ISSUE_CHECK_TYPE}}
+      - name: "comment"
+        if: ${{env.ISSUE_CHECK_RESULT == 'unqualified'}}
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: "create-comment"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Hello @${{ github.event.issue.user.login }}.你的Issue因为下面的原因被关闭了:
+             ${{env.ISSUE_CHECK_REPLY}}
+      - name: "close-issue"
+        if: ${{env.ISSUE_CHECK_RESULT == 'unqualified'}}
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: "close-issue"
           token: ${{ secrets.GITHUB_TOKEN }}
