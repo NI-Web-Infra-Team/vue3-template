@@ -14,3 +14,4 @@ jobs:
           actions: "mark-duplicate"
           token: ${{ secrets.GITHUB_TOKEN }}
           close-issue: true
+          duplicate-command: "/re"
