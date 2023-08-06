@@ -2,16 +2,16 @@ name: close inaction issue
 
 on:
   schedule:
-    - cron: "8 12 * * *"
+    - cron: "00 12,00,18 * * *"
 
 jobs:
   check-need-info:
     runs-on: ubuntu-latest
     steps:
-      - name: close-issues
+      - name: need reproduction
         uses: actions-cool/issues-helper@v3
         with:
           actions: 'close-issues'
           token: ${{ secrets.GITHUB_TOKEN }}
-          labels: 'need info'
+          labels: 'need reproduction'
           inactive-day: 3
