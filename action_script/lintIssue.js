@@ -65,7 +65,7 @@ const bugHandle = () => {
   // 运行环境信息
   const otherIndex = textSplit.indexOf('## 其他') || textSplit.length + 1
   const envContent = textSplit.slice(envIndex + 1, otherIndex)
-  const envReg = /\[\e\.\g\..{5,}\]/
+  const envReg = /\[e\.g\..{5,}\]/
   let hasDevice = false
   let hasOS = false
   let hasBrowser = false
