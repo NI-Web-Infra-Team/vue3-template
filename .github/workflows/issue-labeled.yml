@@ -1,0 +1,37 @@
+name: Issue Labeled
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  reply-labeled:
+    runs-on: ubuntu-latest
+    steps:
+      # 需要帮助
+      - name: contribution welcome
+        if: github.event.label.name == 'help wanted'
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: "create-comment"
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            你好 @${{ github.event.issue.user.login }}，我们完全同意你的提议/反馈，欢迎直接在此仓库 [创建一个 Pull Request](https://github.com/NI-Web-Infra-Team/vue3-template/pulls) 来解决这个问题。请将 Pull Request 发到 `dev` 分支，务必填写 Pull Request 内的[预设模板](https://github.com/NI-Web-Infra-Team/common-utils/blob/main/.github/pull_request_template.md)，提供改动所需相应的 changelog、TypeScript 定义、测试用例、文档等，并确保 CI 通过，我们会尽快进行 Review，提前感谢和期待您的贡献。
+        # 补充复现流程
+      - name: need reproduction
+        if: github.event.label.name == 'need reproduction'
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: "create-comment"
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            你好 @${{ github.event.issue.user.login }}, 我们需要你提供一个在线的重现实例以便于我们帮你排查问题。可以通过点击 [此处](https://codepen.io/pen/) 创建或者提供一个最小化的 GitHub 仓库。3 天内未跟进此 issue 将会被自动关闭。
+
+      - name: invalid
+        if: github.event.label.name == 'invalid'
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: "create-comment, close-issue"
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            你好 @${{ github.event.issue.user.login }}，为了能够进行高效沟通，我们对 issue 有一定的格式要求，你的 issue 因为不符合要求而被自动关闭。你可以通过模板来创建 issue 以方便我们定位错误。谢谢配合！
