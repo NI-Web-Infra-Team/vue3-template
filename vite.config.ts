@@ -1,20 +1,18 @@
-import { defineConfig } from "vite";
-import { fileURLToPath, URL } from "node:url";
-import vue from "@vitejs/plugin-vue";
-import eslintPlugin from "vite-plugin-eslint";
+import { fileURLToPath, URL } from 'node:url'
+import { resolve } from 'node:path'
+import { readdirSync } from 'node:fs'
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	resolve: {
-		alias: {
-			// '@':'绝对路径', 若有需要，自行配置其他
-			"@": fileURLToPath(new URL("src", import.meta.url)),
-		},
-	},
-	plugins: [
-		vue(),
-		eslintPlugin({
-			include: ["src/**/*.ts", "src/**/*.vue", "src/*.ts", "src/*.vue"],
-		}),
-	],
-});
+  plugins: [vue()],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  },
+  define: {
+    __SUPPORT_LOCALES__: JSON.stringify(readdirSync(resolve(__dirname, './src/locales/')))
+  }
+})

@@ -1,12 +1,11 @@
 <template>
   <div>
-    <h2>Hello Vue3</h2>
+    <h2>{{ t('hello') }} Vue3</h2>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({
-  name: "TitleMain",
-});
+<script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 </script>
 <style></style>

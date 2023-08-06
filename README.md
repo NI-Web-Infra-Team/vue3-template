@@ -14,7 +14,7 @@
 - [x] pinia
 - [x] typescript
 - [x] vue-router
-- [x] 默认安装的工具库（`lodash-es`、`@ni-web-infra/- common-utils`、`dayjs`、`axios`）
+- [x] 默认安装的工具库（`lodash-es`、`@ni-web-infra/- common-utils`、`dayjs`、`axios`、`vue-i18n`）
 - [x] 提交规范 commitlint
-- [ ] CICD
-- [ ] 脚手架构建 s
+- [ ] CI/CD
+- [ ] 脚手架构建
