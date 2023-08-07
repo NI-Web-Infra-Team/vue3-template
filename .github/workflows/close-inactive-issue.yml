@@ -1,11 +1,11 @@
-name: close inaction issue
+name: close inactive issue
 
 on:
   schedule:
-    - cron: "00 12,00,18 * * *"
+    - cron: '00 12,00,18 * * *'
 
 jobs:
-  check-need-info:
+  check-inactive-info:
     runs-on: ubuntu-latest
     steps:
       - name: need reproduction

@@ -11,7 +11,9 @@ jobs:
       - name: mark-duplicate
         uses: actions-cool/issues-helper@v3
         with:
-          actions: "mark-duplicate"
+          actions: 'mark-duplicate'
           token: ${{ secrets.GITHUB_TOKEN }}
           close-issue: true
-          duplicate-command: "/re"
+          duplicate-labels: duplicate
+          require-permission: write
+          duplicate-command: '/re'
